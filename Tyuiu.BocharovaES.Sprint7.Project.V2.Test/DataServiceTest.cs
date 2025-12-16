@@ -4,8 +4,13 @@
     public sealed class DataServiceTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ValidLoadFromFileData()
         {
+            string path = @"C:\Users\Пользователь\source\repos\Tyuiu.BocharovaES.Sprint7\База данных.csv";
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            bool wait = true;
+            Assert.AreEqual(wait, fileExists);
         }
     }
 }
