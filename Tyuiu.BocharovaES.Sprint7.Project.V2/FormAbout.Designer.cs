@@ -61,6 +61,7 @@
             buttonOk_BES.TabIndex = 2;
             buttonOk_BES.Text = "Ok";
             buttonOk_BES.UseVisualStyleBackColor = true;
+            buttonOk_BES.Click += buttonOk_BES_Click;
             // 
             // FormAbout
             // 

@@ -63,6 +63,16 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folder_page_white {
+            get {
+                object obj = ResourceManager.GetObject("folder_page_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IMG_20240712_202711__2_ {
             get {
                 object obj = ResourceManager.GetObject("IMG_20240712_202711 (2)", resourceCulture);

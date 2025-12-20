@@ -16,5 +16,10 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
         {
             InitializeComponent();
         }
+
+        private void buttonOk_BES_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
