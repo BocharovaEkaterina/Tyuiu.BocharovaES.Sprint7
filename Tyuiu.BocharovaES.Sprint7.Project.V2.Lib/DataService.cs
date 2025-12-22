@@ -22,5 +22,26 @@
             }
             return mtrx;
         }
+        public double MaxValue(int[] values)
+        {
+            double max = 0;
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i] > max)
+                {
+                    max = values[i];
+                }
+            }
+            return max;
+        }
+        public double SumValue(int[] value)
+        {
+            double sum = 0;
+            for(int i = 0; i < value.Length;i++)
+            {
+                sum += value[i];
+            }
+            return sum;
+        }
     }
 }
