@@ -1,3 +1,4 @@
+using System.IO;
 using Tyuiu.BocharovaES.Sprint7.Project.V2.Lib;
 namespace Tyuiu.BocharovaES.Sprint7.Project.V2
 {
@@ -8,6 +9,8 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
             InitializeComponent();
             openFileDialogProject_BES.Filter = "Значения, разделённые запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
+        static int rowss;
+        static int columns;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -170,6 +173,116 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
                 for (int j = 0; j <= dataGridViewBase_BES.ColumnCount - 1; j++)
                     if (dataGridViewBase_BES.Rows[i].Cells[j].Value != null && dataGridViewBase_BES.Rows[i].Cells[j].Value.ToString() == textBoxSearch_BES.Text)
                         dataGridViewBase_BES.Rows[i].Selected = true;
+        }
+
+        private void textBoxSearch_BES_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = textBoxSearch_BES.Text;
+            foreach (DataGridViewRow row in dataGridViewBase_BES.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(currentText) && cell.Value.ToString().ToUpper().Contains(currentText.ToUpper()))
+                    {
+                        cell.Style.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        cell.Style.BackColor = Color.White;
+                    }
+                }
+            }
+        }
+
+        private void buttonIncreasing_BES_Click(object sender, EventArgs e)
+        {
+            string[,] mx = ds.LoadFromFileData(openFilePath);
+
+            if (mx.GetLength(1) <= 5)
+            {
+                MessageBox.Show("Ошибка: недостаточно столбцов для сортировки по 6-му столбцу");
+                return;
+            }
+
+            string[,] mxsort = ds.SortVozrastImproved(mx, 5);
+
+            int rows = mxsort.GetLength(0);
+            int columns = mxsort.GetLength(1);
+
+            dataGridViewBase_BES.Rows.Clear();
+
+            for (int i = 0; i < rows - 1; i++)
+            {
+                dataGridViewBase_BES.Rows.Add();
+            }
+
+            for (int i = 1; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    dataGridViewBase_BES.Rows[i - 1].Cells[j].Value = mxsort[i, j];
+                }
+            }
+        }
+
+        private void buttonDecreasing_BES_Click(object sender, EventArgs e)
+        {
+            string[,] mx = ds.LoadFromFileData(openFilePath);
+
+            if (mx.GetLength(1) <= 5)
+            {
+                MessageBox.Show("Ошибка: недостаточно столбцов для сортировки по 6-му столбцу");
+                return;
+            }
+
+            string[,] mxsort = ds.SortUbyvImproved(mx, 5);
+
+            int rows = mxsort.GetLength(0);
+            int columns = mxsort.GetLength(1);
+
+            dataGridViewBase_BES.Rows.Clear();
+
+            for (int i = 0; i < rows - 1; i++)
+            {
+                dataGridViewBase_BES.Rows.Add();
+            }
+
+            for (int i = 1; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    dataGridViewBase_BES.Rows[i - 1].Cells[j].Value = mxsort[i, j];
+                }
+            }
+        }
+
+        private void buttonFilter_BES_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dataGridViewBase_BES.Rows)
+            {
+                if ((r.Cells[comboBoxCity_BES.SelectedIndex].Value?.ToString() ?? "").ToUpper().Contains(textBoxFilter_BES.Text.ToUpper()))
+                {
+                    dataGridViewBase_BES.Rows[r.Index].Visible = true;
+                    dataGridViewBase_BES.Rows[r.Index].Selected = true;
+                }
+                else
+                {
+                    dataGridViewBase_BES.CurrentCell = null;
+                    dataGridViewBase_BES.Rows[r.Index].Visible = false;
+                }
+            }
+        }
+
+        private void comboBoxCity_BES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxCity_BES.SelectedIndex >= 0)
+            {
+                textBoxFilter_BES.Enabled = true;
+            }
+            else
+            {
+                textBoxFilter_BES.Enabled = false;
+            }
         }
     }
 }

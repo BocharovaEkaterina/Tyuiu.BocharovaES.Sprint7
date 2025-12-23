@@ -29,10 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tabControl_BES = new TabControl();
             tabPageBase_BES = new TabPage();
+            groupBoxFilter_BES = new GroupBox();
+            textBoxFilter_BES = new TextBox();
+            buttonFilter_BES = new Button();
+            comboBoxCity_BES = new ComboBox();
+            groupBoxSort_BES = new GroupBox();
+            buttonDecreasing_BES = new Button();
+            buttonIncreasing_BES = new Button();
+            labelDecreasing_BES = new Label();
+            labelIncreasing_BES = new Label();
+            pictureBoxSearch_BES = new PictureBox();
+            buttonSearch_BES = new Button();
+            textBoxSearch_BES = new TextBox();
+            labelSearch_BES = new Label();
             buttonOpen_BES = new Button();
             panelName_BES = new Panel();
             pictureBoxName_BES = new PictureBox();
@@ -43,7 +56,7 @@
             toolStripMenuItemInfo_BES = new ToolStripMenuItem();
             toolStripMenuItemAbout_BES = new ToolStripMenuItem();
             toolStripMenuItemHelp_BES = new ToolStripMenuItem();
-            tabPage2 = new TabPage();
+            tabPageDio_BES = new TabPage();
             groupBoxDioButton_BES = new GroupBox();
             buttonMax_BES = new Button();
             textBoxMax_BES = new TextBox();
@@ -60,35 +73,45 @@
             panelChart_BES = new Panel();
             textBoxChart_BES = new TextBox();
             tabPage3 = new TabPage();
-            tabPage1 = new TabPage();
+            tabPageNew_BES = new TabPage();
             openFileDialogProject_BES = new OpenFileDialog();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            labelSearch_BES = new Label();
-            textBoxSearch_BES = new TextBox();
-            buttonSearch_BES = new Button();
-            pictureBoxSearch_BES = new PictureBox();
+            textBoxNameFilter_BES = new TextBox();
+            textBoxNameKay_BES = new TextBox();
+            dataGridView1 = new DataGridView();
+            dataGridViewBaseNew_BES = new DataGridView();
+            buttonOpenNew_BES = new Button();
+            buttonSave_BES = new Button();
+            buttonDelete_BES = new Button();
+            buttonHelpNew_BES = new Button();
             tabControl_BES.SuspendLayout();
             tabPageBase_BES.SuspendLayout();
+            groupBoxFilter_BES.SuspendLayout();
+            groupBoxSort_BES.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSearch_BES).BeginInit();
             panelName_BES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxName_BES).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBase_BES).BeginInit();
             menuStrip_BES.SuspendLayout();
-            tabPage2.SuspendLayout();
+            tabPageDio_BES.SuspendLayout();
             groupBoxDioButton_BES.SuspendLayout();
             groupBoxDio_BES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartDio_BES).BeginInit();
             groupBoxChart_BES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewChart_BES).BeginInit();
             panelChart_BES.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSearch_BES).BeginInit();
+            tabPage3.SuspendLayout();
+            tabPageNew_BES.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaseNew_BES).BeginInit();
             SuspendLayout();
             // 
             // tabControl_BES
             // 
             tabControl_BES.Controls.Add(tabPageBase_BES);
-            tabControl_BES.Controls.Add(tabPage2);
+            tabControl_BES.Controls.Add(tabPageDio_BES);
             tabControl_BES.Controls.Add(tabPage3);
-            tabControl_BES.Controls.Add(tabPage1);
+            tabControl_BES.Controls.Add(tabPageNew_BES);
             tabControl_BES.Dock = DockStyle.Fill;
             tabControl_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 204);
             tabControl_BES.Location = new Point(0, 0);
@@ -100,7 +123,9 @@
             // 
             // tabPageBase_BES
             // 
+            tabPageBase_BES.Controls.Add(groupBoxFilter_BES);
             tabPageBase_BES.Controls.Add(pictureBoxSearch_BES);
+            tabPageBase_BES.Controls.Add(groupBoxSort_BES);
             tabPageBase_BES.Controls.Add(buttonSearch_BES);
             tabPageBase_BES.Controls.Add(textBoxSearch_BES);
             tabPageBase_BES.Controls.Add(labelSearch_BES);
@@ -115,6 +140,145 @@
             tabPageBase_BES.TabIndex = 0;
             tabPageBase_BES.Text = "База данных";
             tabPageBase_BES.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxFilter_BES
+            // 
+            groupBoxFilter_BES.Controls.Add(textBoxNameKay_BES);
+            groupBoxFilter_BES.Controls.Add(textBoxNameFilter_BES);
+            groupBoxFilter_BES.Controls.Add(textBoxFilter_BES);
+            groupBoxFilter_BES.Controls.Add(buttonFilter_BES);
+            groupBoxFilter_BES.Controls.Add(comboBoxCity_BES);
+            groupBoxFilter_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            groupBoxFilter_BES.Location = new Point(4, 180);
+            groupBoxFilter_BES.Name = "groupBoxFilter_BES";
+            groupBoxFilter_BES.Size = new Size(250, 358);
+            groupBoxFilter_BES.TabIndex = 9;
+            groupBoxFilter_BES.TabStop = false;
+            groupBoxFilter_BES.Text = "Фмльтрация и сортировка:";
+            // 
+            // textBoxFilter_BES
+            // 
+            textBoxFilter_BES.Location = new Point(6, 243);
+            textBoxFilter_BES.Name = "textBoxFilter_BES";
+            textBoxFilter_BES.Size = new Size(215, 29);
+            textBoxFilter_BES.TabIndex = 11;
+            // 
+            // buttonFilter_BES
+            // 
+            buttonFilter_BES.BackColor = Color.Gainsboro;
+            buttonFilter_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonFilter_BES.Location = new Point(8, 303);
+            buttonFilter_BES.Name = "buttonFilter_BES";
+            buttonFilter_BES.Size = new Size(197, 36);
+            buttonFilter_BES.TabIndex = 10;
+            buttonFilter_BES.Text = "Отобразить";
+            buttonFilter_BES.UseVisualStyleBackColor = false;
+            buttonFilter_BES.Click += buttonFilter_BES_Click;
+            // 
+            // comboBoxCity_BES
+            // 
+            comboBoxCity_BES.FormattingEnabled = true;
+            comboBoxCity_BES.Items.AddRange(new object[] { "номер", "ФИО", "город", "улица,дом", "телефон", "капитал владельца", "фамилия поставщика", "прибыль месяц", "проходимость" });
+            comboBoxCity_BES.Location = new Point(8, 112);
+            comboBoxCity_BES.Name = "comboBoxCity_BES";
+            comboBoxCity_BES.Size = new Size(213, 29);
+            comboBoxCity_BES.TabIndex = 1;
+            comboBoxCity_BES.SelectedIndexChanged += comboBoxCity_BES_SelectedIndexChanged;
+            // 
+            // groupBoxSort_BES
+            // 
+            groupBoxSort_BES.Controls.Add(buttonDecreasing_BES);
+            groupBoxSort_BES.Controls.Add(buttonIncreasing_BES);
+            groupBoxSort_BES.Controls.Add(labelIncreasing_BES);
+            groupBoxSort_BES.Controls.Add(labelDecreasing_BES);
+            groupBoxSort_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            groupBoxSort_BES.Location = new Point(12, 554);
+            groupBoxSort_BES.Name = "groupBoxSort_BES";
+            groupBoxSort_BES.Size = new Size(631, 158);
+            groupBoxSort_BES.TabIndex = 5;
+            groupBoxSort_BES.TabStop = false;
+            groupBoxSort_BES.Text = "Сортировка по капиталу владельца:";
+            // 
+            // buttonDecreasing_BES
+            // 
+            buttonDecreasing_BES.BackColor = Color.Gainsboro;
+            buttonDecreasing_BES.Location = new Point(383, 94);
+            buttonDecreasing_BES.Name = "buttonDecreasing_BES";
+            buttonDecreasing_BES.Size = new Size(207, 46);
+            buttonDecreasing_BES.TabIndex = 3;
+            buttonDecreasing_BES.Text = "Отфильтровать";
+            buttonDecreasing_BES.UseVisualStyleBackColor = false;
+            buttonDecreasing_BES.Click += buttonDecreasing_BES_Click;
+            // 
+            // buttonIncreasing_BES
+            // 
+            buttonIncreasing_BES.BackColor = Color.Gainsboro;
+            buttonIncreasing_BES.Location = new Point(45, 94);
+            buttonIncreasing_BES.Name = "buttonIncreasing_BES";
+            buttonIncreasing_BES.Size = new Size(207, 46);
+            buttonIncreasing_BES.TabIndex = 2;
+            buttonIncreasing_BES.Text = "Отфильтровать ";
+            buttonIncreasing_BES.UseVisualStyleBackColor = false;
+            buttonIncreasing_BES.Click += buttonIncreasing_BES_Click;
+            // 
+            // labelDecreasing_BES
+            // 
+            labelDecreasing_BES.AutoSize = true;
+            labelDecreasing_BES.BackColor = Color.MistyRose;
+            labelDecreasing_BES.Location = new Point(358, 49);
+            labelDecreasing_BES.Name = "labelDecreasing_BES";
+            labelDecreasing_BES.Size = new Size(145, 20);
+            labelDecreasing_BES.TabIndex = 1;
+            labelDecreasing_BES.Text = "-по убыванию ";
+            // 
+            // labelIncreasing_BES
+            // 
+            labelIncreasing_BES.AutoSize = true;
+            labelIncreasing_BES.BackColor = Color.MistyRose;
+            labelIncreasing_BES.Location = new Point(24, 49);
+            labelIncreasing_BES.Name = "labelIncreasing_BES";
+            labelIncreasing_BES.Size = new Size(163, 20);
+            labelIncreasing_BES.TabIndex = 0;
+            labelIncreasing_BES.Text = "-по возрастанию";
+            // 
+            // pictureBoxSearch_BES
+            // 
+            pictureBoxSearch_BES.Image = Properties.Resources.zoom;
+            pictureBoxSearch_BES.Location = new Point(479, 139);
+            pictureBoxSearch_BES.Name = "pictureBoxSearch_BES";
+            pictureBoxSearch_BES.Size = new Size(39, 38);
+            pictureBoxSearch_BES.TabIndex = 8;
+            pictureBoxSearch_BES.TabStop = false;
+            // 
+            // buttonSearch_BES
+            // 
+            buttonSearch_BES.BackColor = Color.Gainsboro;
+            buttonSearch_BES.Font = new Font("Bookman Old Style", 12.8F, FontStyle.Bold);
+            buttonSearch_BES.Location = new Point(925, 145);
+            buttonSearch_BES.Name = "buttonSearch_BES";
+            buttonSearch_BES.Size = new Size(126, 29);
+            buttonSearch_BES.TabIndex = 7;
+            buttonSearch_BES.Text = "Искать";
+            buttonSearch_BES.UseVisualStyleBackColor = false;
+            buttonSearch_BES.Click += buttonSearch_BES_Click;
+            // 
+            // textBoxSearch_BES
+            // 
+            textBoxSearch_BES.Location = new Point(620, 145);
+            textBoxSearch_BES.Name = "textBoxSearch_BES";
+            textBoxSearch_BES.Size = new Size(299, 29);
+            textBoxSearch_BES.TabIndex = 6;
+            textBoxSearch_BES.TextChanged += textBoxSearch_BES_TextChanged;
+            // 
+            // labelSearch_BES
+            // 
+            labelSearch_BES.AutoSize = true;
+            labelSearch_BES.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelSearch_BES.Location = new Point(525, 146);
+            labelSearch_BES.Name = "labelSearch_BES";
+            labelSearch_BES.Size = new Size(89, 28);
+            labelSearch_BES.TabIndex = 5;
+            labelSearch_BES.Text = "Поиск";
             // 
             // buttonOpen_BES
             // 
@@ -166,7 +330,7 @@
             dataGridViewBase_BES.Name = "dataGridViewBase_BES";
             dataGridViewBase_BES.RowHeadersVisible = false;
             dataGridViewBase_BES.RowHeadersWidth = 51;
-            dataGridViewBase_BES.Size = new Size(1037, 355);
+            dataGridViewBase_BES.Size = new Size(1037, 358);
             dataGridViewBase_BES.TabIndex = 0;
             dataGridViewBase_BES.CellContentClick += dataGridViewBase_BES_CellContentClick;
             // 
@@ -210,19 +374,19 @@
             toolStripMenuItemHelp_BES.Size = new Size(325, 26);
             toolStripMenuItemHelp_BES.Text = "Поддержка";
             // 
-            // tabPage2
+            // tabPageDio_BES
             // 
-            tabPage2.Controls.Add(groupBoxDioButton_BES);
-            tabPage2.Controls.Add(groupBoxDio_BES);
-            tabPage2.Controls.Add(groupBoxChart_BES);
-            tabPage2.Controls.Add(panelChart_BES);
-            tabPage2.Location = new Point(4, 31);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1300, 729);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Диаграмма ";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabPageDio_BES.Controls.Add(groupBoxDioButton_BES);
+            tabPageDio_BES.Controls.Add(groupBoxDio_BES);
+            tabPageDio_BES.Controls.Add(groupBoxChart_BES);
+            tabPageDio_BES.Controls.Add(panelChart_BES);
+            tabPageDio_BES.Location = new Point(4, 31);
+            tabPageDio_BES.Name = "tabPageDio_BES";
+            tabPageDio_BES.Padding = new Padding(3);
+            tabPageDio_BES.Size = new Size(1300, 729);
+            tabPageDio_BES.TabIndex = 1;
+            tabPageDio_BES.Text = "Диаграмма ";
+            tabPageDio_BES.UseVisualStyleBackColor = true;
             // 
             // groupBoxDioButton_BES
             // 
@@ -309,16 +473,16 @@
             // 
             // chartDio_BES
             // 
-            chartArea1.Name = "ChartArea1";
-            chartDio_BES.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            chartDio_BES.ChartAreas.Add(chartArea3);
             chartDio_BES.Dock = DockStyle.Fill;
             chartDio_BES.Location = new Point(3, 25);
             chartDio_BES.Name = "chartDio_BES";
             chartDio_BES.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Name = "Series1";
-            chartDio_BES.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Name = "Series1";
+            chartDio_BES.Series.Add(series3);
             chartDio_BES.Size = new Size(927, 390);
             chartDio_BES.TabIndex = 3;
             chartDio_BES.Text = "chart1";
@@ -390,6 +554,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(dataGridView1);
             tabPage3.Location = new Point(4, 31);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
@@ -398,57 +563,99 @@
             tabPage3.Text = "График";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // tabPageNew_BES
             // 
-            tabPage1.Location = new Point(4, 31);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1300, 729);
-            tabPage1.TabIndex = 3;
-            tabPage1.Text = "Добавление/удаление филиала ";
-            tabPage1.UseVisualStyleBackColor = true;
+            tabPageNew_BES.Controls.Add(buttonHelpNew_BES);
+            tabPageNew_BES.Controls.Add(buttonDelete_BES);
+            tabPageNew_BES.Controls.Add(buttonSave_BES);
+            tabPageNew_BES.Controls.Add(buttonOpenNew_BES);
+            tabPageNew_BES.Controls.Add(dataGridViewBaseNew_BES);
+            tabPageNew_BES.Location = new Point(4, 31);
+            tabPageNew_BES.Name = "tabPageNew_BES";
+            tabPageNew_BES.Padding = new Padding(3);
+            tabPageNew_BES.Size = new Size(1300, 729);
+            tabPageNew_BES.TabIndex = 3;
+            tabPageNew_BES.Text = "Добавление/удаление филиала ";
+            tabPageNew_BES.UseVisualStyleBackColor = true;
             // 
             // openFileDialogProject_BES
             // 
             openFileDialogProject_BES.FileName = "openFileDialog1";
             // 
-            // labelSearch_BES
+            // textBoxNameFilter_BES
             // 
-            labelSearch_BES.AutoSize = true;
-            labelSearch_BES.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            labelSearch_BES.Location = new Point(525, 146);
-            labelSearch_BES.Name = "labelSearch_BES";
-            labelSearch_BES.Size = new Size(89, 28);
-            labelSearch_BES.TabIndex = 5;
-            labelSearch_BES.Text = "Поиск";
+            textBoxNameFilter_BES.BackColor = SystemColors.InactiveBorder;
+            textBoxNameFilter_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 204);
+            textBoxNameFilter_BES.Location = new Point(8, 57);
+            textBoxNameFilter_BES.Multiline = true;
+            textBoxNameFilter_BES.Name = "textBoxNameFilter_BES";
+            textBoxNameFilter_BES.Size = new Size(213, 34);
+            textBoxNameFilter_BES.TabIndex = 12;
+            textBoxNameFilter_BES.Text = "Выберете столбец:";
             // 
-            // textBoxSearch_BES
+            // textBoxNameKay_BES
             // 
-            textBoxSearch_BES.Location = new Point(620, 145);
-            textBoxSearch_BES.Name = "textBoxSearch_BES";
-            textBoxSearch_BES.Size = new Size(299, 29);
-            textBoxSearch_BES.TabIndex = 6;
+            textBoxNameKay_BES.BackColor = SystemColors.InactiveBorder;
+            textBoxNameKay_BES.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 204);
+            textBoxNameKay_BES.Location = new Point(8, 163);
+            textBoxNameKay_BES.Multiline = true;
+            textBoxNameKay_BES.Name = "textBoxNameKay_BES";
+            textBoxNameKay_BES.Size = new Size(213, 52);
+            textBoxNameKay_BES.TabIndex = 13;
+            textBoxNameKay_BES.Text = "Ключ для фильтрации";
             // 
-            // buttonSearch_BES
+            // dataGridView1
             // 
-            buttonSearch_BES.BackColor = Color.Gainsboro;
-            buttonSearch_BES.Font = new Font("Bookman Old Style", 12.8F, FontStyle.Bold);
-            buttonSearch_BES.Location = new Point(925, 145);
-            buttonSearch_BES.Name = "buttonSearch_BES";
-            buttonSearch_BES.Size = new Size(126, 29);
-            buttonSearch_BES.TabIndex = 7;
-            buttonSearch_BES.Text = "Искать";
-            buttonSearch_BES.UseVisualStyleBackColor = false;
-            buttonSearch_BES.Click += buttonSearch_BES_Click;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(623, 225);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(669, 498);
+            dataGridView1.TabIndex = 0;
             // 
-            // pictureBoxSearch_BES
+            // dataGridViewBaseNew_BES
             // 
-            pictureBoxSearch_BES.Image = Properties.Resources.zoom;
-            pictureBoxSearch_BES.Location = new Point(479, 139);
-            pictureBoxSearch_BES.Name = "pictureBoxSearch_BES";
-            pictureBoxSearch_BES.Size = new Size(39, 38);
-            pictureBoxSearch_BES.TabIndex = 8;
-            pictureBoxSearch_BES.TabStop = false;
+            dataGridViewBaseNew_BES.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBaseNew_BES.Location = new Point(569, 108);
+            dataGridViewBaseNew_BES.Name = "dataGridViewBaseNew_BES";
+            dataGridViewBaseNew_BES.RowHeadersWidth = 51;
+            dataGridViewBaseNew_BES.Size = new Size(728, 613);
+            dataGridViewBaseNew_BES.TabIndex = 0;
+            // 
+            // buttonOpenNew_BES
+            // 
+            buttonOpenNew_BES.Image = Properties.Resources.folder_page_white1;
+            buttonOpenNew_BES.Location = new Point(638, 6);
+            buttonOpenNew_BES.Name = "buttonOpenNew_BES";
+            buttonOpenNew_BES.Size = new Size(146, 96);
+            buttonOpenNew_BES.TabIndex = 1;
+            buttonOpenNew_BES.UseVisualStyleBackColor = true;
+            // 
+            // buttonSave_BES
+            // 
+            buttonSave_BES.Image = Properties.Resources.folder_add1;
+            buttonSave_BES.Location = new Point(810, 6);
+            buttonSave_BES.Name = "buttonSave_BES";
+            buttonSave_BES.Size = new Size(146, 96);
+            buttonSave_BES.TabIndex = 2;
+            buttonSave_BES.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelete_BES
+            // 
+            buttonDelete_BES.Image = Properties.Resources.folder_delete;
+            buttonDelete_BES.Location = new Point(974, 6);
+            buttonDelete_BES.Name = "buttonDelete_BES";
+            buttonDelete_BES.Size = new Size(146, 96);
+            buttonDelete_BES.TabIndex = 3;
+            buttonDelete_BES.UseVisualStyleBackColor = true;
+            // 
+            // buttonHelpNew_BES
+            // 
+            buttonHelpNew_BES.Location = new Point(1138, 6);
+            buttonHelpNew_BES.Name = "buttonHelpNew_BES";
+            buttonHelpNew_BES.Size = new Size(146, 96);
+            buttonHelpNew_BES.TabIndex = 4;
+            buttonHelpNew_BES.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -463,13 +670,18 @@
             tabControl_BES.ResumeLayout(false);
             tabPageBase_BES.ResumeLayout(false);
             tabPageBase_BES.PerformLayout();
+            groupBoxFilter_BES.ResumeLayout(false);
+            groupBoxFilter_BES.PerformLayout();
+            groupBoxSort_BES.ResumeLayout(false);
+            groupBoxSort_BES.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSearch_BES).EndInit();
             panelName_BES.ResumeLayout(false);
             panelName_BES.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxName_BES).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBase_BES).EndInit();
             menuStrip_BES.ResumeLayout(false);
             menuStrip_BES.PerformLayout();
-            tabPage2.ResumeLayout(false);
+            tabPageDio_BES.ResumeLayout(false);
             groupBoxDioButton_BES.ResumeLayout(false);
             groupBoxDioButton_BES.PerformLayout();
             groupBoxDio_BES.ResumeLayout(false);
@@ -478,16 +690,19 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewChart_BES).EndInit();
             panelChart_BES.ResumeLayout(false);
             panelChart_BES.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSearch_BES).EndInit();
+            tabPage3.ResumeLayout(false);
+            tabPageNew_BES.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaseNew_BES).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private TabControl tabControl_BES;
         private TabPage tabPageBase_BES;
-        private TabPage tabPage2;
+        private TabPage tabPageDio_BES;
         private TabPage tabPage3;
-        private TabPage tabPage1;
+        private TabPage tabPageNew_BES;
         private MenuStrip menuStrip_BES;
         private ToolStripMenuItem toolStripMenuItem_BES;
         private ToolStripMenuItem toolStripMenuItemInfo_BES;
@@ -519,5 +734,22 @@
         private Button buttonSearch_BES;
         private TextBox textBoxSearch_BES;
         private PictureBox pictureBoxSearch_BES;
+        private GroupBox groupBoxFilter_BES;
+        private GroupBox groupBoxSort_BES;
+        private Label labelIncreasing_BES;
+        private ComboBox comboBoxCity_BES;
+        private Label labelDecreasing_BES;
+        private Button buttonDecreasing_BES;
+        private Button buttonIncreasing_BES;
+        private Button buttonFilter_BES;
+        private TextBox textBoxFilter_BES;
+        private TextBox textBoxNameFilter_BES;
+        private TextBox textBoxNameKay_BES;
+        private DataGridView dataGridView1;
+        private DataGridView dataGridViewBaseNew_BES;
+        private Button buttonDelete_BES;
+        private Button buttonSave_BES;
+        private Button buttonOpenNew_BES;
+        private Button buttonHelpNew_BES;
     }
 }
