@@ -284,5 +284,150 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
                 textBoxFilter_BES.Enabled = false;
             }
         }
+
+        private void buttonSaveNew_BES_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Собираем данные
+                string names = textBoxNameNew_BES.Text.Trim();
+                string city = textBoxCity_BES.Text.Trim();
+                string address = textBoxAddress_BES.Text.Trim();
+                string tel = textBoxTel_BES.Text.Trim();
+                string capital = textBoxCapital_BES.Text.Trim();
+                string familia = textBoxFamilia_BES.Text.Trim();
+                string money = textBoxMoney_BES.Text.Trim();
+                string go = textBoxGo_BES.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(city) ||
+                    string.IsNullOrWhiteSpace(address) ||
+                    string.IsNullOrWhiteSpace(tel) ||
+                    string.IsNullOrWhiteSpace(capital) ||
+                    string.IsNullOrWhiteSpace(familia) ||
+                    string.IsNullOrWhiteSpace(money) ||
+                    string.IsNullOrWhiteSpace(go))
+                {
+                    MessageBox.Show("Заполните все поля", "Ошибка",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int rowNumber = dataGridViewBaseNew_BES.Rows.Count;
+                dataGridViewBaseNew_BES.Rows.Add(rowNumber, names, city, address, tel,
+                                                capital, familia, money, go);
+
+                textBoxNameNew_BES.Clear();
+                textBoxCity_BES.Clear();
+                textBoxAddress_BES.Clear();
+                textBoxTel_BES.Clear();
+                textBoxCapital_BES.Clear();
+                textBoxFamilia_BES.Clear();
+                textBoxMoney_BES.Clear();
+                textBoxGo_BES.Clear();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            buttonSave_BES.Enabled = true;
+        }
+
+        private void buttonOpenNew_BES_Click(object sender, EventArgs e)
+        {
+            openFileDialogProject_BES.ShowDialog();
+            openFilePath = openFileDialogProject_BES.FileName;
+            string[,] arrayValues = ds.LoadFromFileData(openFilePath);
+            dataGridViewBaseNew_BES.ColumnCount = cols = arrayValues.GetLength(1);
+            dataGridViewBaseNew_BES.RowCount = rows = arrayValues.GetLength(0);
+
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    dataGridViewBaseNew_BES.Rows[i].Cells[j].Value = arrayValues[i, j];
+                }
+            }
+            buttonSaveNew_BES.Enabled = true;
+
+        }
+
+
+
+        private void buttonSave_BES_Click(object sender, EventArgs e)
+        {
+            saveFileDialog_BES.FileName = "DataBase.csv";
+            saveFileDialog_BES.InitialDirectory = Directory.GetCurrentDirectory();
+            saveFileDialog_BES.ShowDialog();
+
+
+            string path = saveFileDialog_BES.FileName;
+
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            if (fileExists)
+            {
+                File.Delete(path);
+            }
+            int rows = dataGridViewBaseNew_BES.RowCount;
+            int columns = dataGridViewBaseNew_BES.ColumnCount;
+            string str = "";
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (j != columns - 1)
+                    {
+                        str = str + dataGridViewBaseNew_BES.Rows[i].Cells[j].Value + ";";
+                    }
+                    else
+                    {
+                        str = str + dataGridViewBaseNew_BES.Rows[i].Cells[j].Value;
+                    }
+                }
+                File.AppendAllText(path, str + Environment.NewLine);
+                str = "";
+            }
+        }
+
+        private void buttonDelete_BES_Click(object sender, EventArgs e)
+        {
+            dataGridViewBaseNew_BES.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            if (dataGridViewBaseNew_BES.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите строку для удаления.", "Строка не выбрана", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show("Вы уверены, что хотите удалить выбранные строки?", "Подтвердить удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+
+                List<int> rowsToDelete = new List<int>();
+                foreach (DataGridViewRow selectedRow in dataGridViewBaseNew_BES.SelectedRows)
+                    rowsToDelete.Add(selectedRow.Index);
+
+                for (int i = rowsToDelete.Count - 1; i >= 0; i--)
+                {
+                    dataGridViewBaseNew_BES.Rows.RemoveAt(rowsToDelete[i]);
+                }
+
+                dataGridViewBaseNew_BES.ClearSelection();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка удаления строки: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

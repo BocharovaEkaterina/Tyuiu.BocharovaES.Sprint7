@@ -73,6 +73,16 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chart_curve_go {
+            get {
+                object obj = ResourceManager.GetObject("chart_curve_go", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_add {
             get {
                 object obj = ResourceManager.GetObject("folder_add", resourceCulture);
@@ -116,6 +126,16 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2.Properties {
         internal static System.Drawing.Bitmap folder_page_white1 {
             get {
                 object obj = ResourceManager.GetObject("folder_page_white1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_page_white2 {
+            get {
+                object obj = ResourceManager.GetObject("folder_page_white2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
