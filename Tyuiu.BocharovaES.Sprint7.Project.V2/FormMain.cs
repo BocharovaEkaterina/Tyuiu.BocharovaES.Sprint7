@@ -22,8 +22,8 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
 
         private void toolStripMenuItemAbout_BES_Click_1(object sender, EventArgs e)
         {
-            FormAbout formInstruction = new FormAbout();
-            formInstruction.ShowDialog();
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
         }
 
         private void dataGridViewBase_BES_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -289,7 +289,6 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
         {
             try
             {
-                // Собираем данные
                 string names = textBoxNameNew_BES.Text.Trim();
                 string city = textBoxCity_BES.Text.Trim();
                 string address = textBoxAddress_BES.Text.Trim();
@@ -429,5 +428,190 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2
                 MessageBox.Show($"Ошибка удаления строки: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonOpenChart_BES_Click(object sender, EventArgs e)
+        {
+            openFileDialogProject_BES.ShowDialog();
+            openFilePath = openFileDialogProject_BES.FileName;
+            string[,] arrayValues = ds.LoadFromFileData(openFilePath);
+            dataGridViewChart2_BES.ColumnCount = cols = arrayValues.GetLength(1);
+            dataGridViewChart2_BES.RowCount = rows = arrayValues.GetLength(0);
+
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    dataGridViewChart2_BES.Rows[i].Cells[j].Value = arrayValues[i, j];
+                }
+            }
+            buttonChart_BES.Enabled = true;
+        }
+
+        private void buttonChart_BES_Click(object sender, EventArgs e)
+        {
+            chart_BES.Series.Clear();
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series("Проходимость");
+            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series.Color = Color.RoyalBlue;
+            series.BorderWidth = 3;
+            series.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series.MarkerSize = 8;
+
+            int pointIndex = 1;
+
+            foreach (DataGridViewRow row in this.dataGridViewChart2_BES.Rows)
+            {
+                if (!row.IsNewRow && row.Cells[1] != null && row.Cells[1].Value != null)
+                {
+                    string label = row.Cells[0].Value.ToString();
+                    double hours = Convert.ToDouble(row.Cells[1].Value);
+
+                    var point = series.Points.AddXY(pointIndex, hours);
+                    pointIndex++;
+                }
+            }
+
+            this.chart_BES.Series.Add(series);
+
+            chart_BES.ChartAreas[0].AxisX.Title = "Филиалы";
+            chart_BES.ChartAreas[0].AxisY.Title = "Проходимость";
+            chart_BES.ChartAreas[0].AxisX.Interval = 1;
+        }
+
+        private void buttonMin_BES_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = 0;
+                for (int i = 0; i < dataGridViewChart2_BES.Rows.Count; i++)
+                {
+                    if (dataGridViewChart2_BES.Rows[i].Visible)
+                    {
+                        count++;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    int[] values = new int[count];
+                    int index = 0;
+
+                    for (int i = 0; i < dataGridViewChart2_BES.Rows.Count; i++)
+                    {
+                        if (dataGridViewChart2_BES.Rows[i].Visible)
+                        {
+                            string val = dataGridViewChart2_BES.Rows[i].Cells[1].Value?.ToString() ?? "0";
+                            values[index] = int.Parse(val);
+                            index++;
+                        }
+                    }
+                    textBoxMin_BES.Text = ds.MinValue(values).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message, "Введены неверные данные", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonSr_BES_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = 0;
+                for (int i = 0; i < dataGridViewChart2_BES.Rows.Count; i++)
+                {
+                    if (dataGridViewChart2_BES.Rows[i].Visible)
+                    {
+                        count++;
+                    }
+                }
+
+                if (count > 0)
+                {
+                    int[] values = new int[count];
+                    int index = 0;
+
+                    for (int i = 0; i < dataGridViewChart2_BES.Rows.Count; i++)
+                    {
+                        if (dataGridViewChart2_BES.Rows[i].Visible)
+                        {
+                            string val = dataGridViewChart2_BES.Rows[i].Cells[1].Value?.ToString() ?? "0";
+                            values[index] = int.Parse(val);
+                            index++;
+                        }
+                    }
+                    textBoxSr_BES.Text = ds.SrValue(values).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message, "Введены неверные данные", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripMenuItemHelp_BES_Click(object sender, EventArgs e)
+        {
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog();
+        }
+
+        private void toolStripMenuItemInfo_BES_Click(object sender, EventArgs e)
+        {
+            FormInfo formInfo = new FormInfo();
+            formInfo.ShowDialog();
+        }
+
+        private void buttonHelpDio_BES_Click(object sender, EventArgs e)
+        {
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog();
+        }
+
+        private void buttonHelpNew_BES_Click(object sender, EventArgs e)
+        {
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog();
+        }
+
+        private void buttonHelpChart_BES_Click(object sender, EventArgs e)
+        {
+            FormHelp formHelp = new FormHelp();
+            formHelp.ShowDialog();
+        }
+        private void buttonOpen_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Выполнить";
+        }
+        private void buttonOpenDio_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Выполнить";
+        }
+        private void buttonDio_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Построить";
+        }
+        private void buttonChart_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Построить";
+        }
+        private void buttonSave_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Сохранить файл";
+        }
+        private void buttonOpenChart_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Выполнить";
+        }
+        private void buttonOpenNew_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Выполнить";
+        }
+        private void buttonDelete_BES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip_BES.ToolTipTitle = "Выполнить";
+        }
+
     }
 }

@@ -73,5 +73,23 @@ namespace Tyuiu.BocharovaES.Sprint7.Project.V2.Test
             string[,] result = ds.SortVozrastImproved(basa, column);
             CollectionAssert.AreEqual(sortedbasa, result);
         }
+        [TestMethod]
+        public void CheckedMinValue()
+        {
+            DataService ds = new DataService();
+            int[] maxValueTest = { 3, 8, 5, 4, 10 };
+            double wait = 3;
+            double res = ds.MinValue(maxValueTest);
+            Assert.AreEqual(wait, res);
+        }
+        [TestMethod]
+        public void CheckedSrValue()
+        {
+            DataService ds = new DataService();
+            int[] sumValueTest = { 3, 8, 5, 4, 10 };
+            double wait = 6;
+            double res = ds.SrValue(sumValueTest);
+            Assert.AreEqual(wait, res);
+        }
     }
 }

@@ -72,7 +72,7 @@
             Controls.Add(pictureBoxAbout_BES);
             Controls.Add(labelInfoAbout_BES);
             Name = "FormAbout";
-            Text = "FormAbout";
+            Text = "О разработчике";
             ((System.ComponentModel.ISupportInitialize)pictureBoxAbout_BES).EndInit();
             ResumeLayout(false);
             PerformLayout();

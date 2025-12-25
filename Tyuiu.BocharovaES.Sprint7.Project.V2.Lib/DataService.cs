@@ -117,5 +117,30 @@
 
             return sortedData;
         }
+        public double MinValue(int[] values)
+        {
+            double min = 10000000000000000;
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i] < min)
+                {
+                    min = values[i];
+                }
+            }
+            return min;
+        }
+        public double SrValue(int[] value)
+        {
+            double sum = 0;
+            int count = 0;
+            for (int i = 0; i < value.Length; i++)
+            {
+                sum += value[i];
+                count++;
+            }
+            double y = sum / count;
+            return y;
+        }
+
     }
 }
